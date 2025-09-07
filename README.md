@@ -245,10 +245,6 @@ Internet → Load Balancer → [Web Server 1, Web Server 2]
 - [OCI Always Free](https://www.oracle.com/cloud/free/)
 - [Terraform Best Practices](https://www.terraform.io/docs/cloud/guides/recommended-practices/index.html)
 
-## Licença
-
-Este projeto é open source e está disponível sob a [MIT License](LICENSE).
-
 ## Contato
 
 - **LinkedIn**: [Vinicius Ribeiro](https://linkedin.com/in/vribeirodev)
