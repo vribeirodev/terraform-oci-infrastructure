@@ -48,12 +48,6 @@ jobs:
           cd ${{ matrix.terraform_module }}
           terraform validate
 
-      - name: Terraform Plan Dry Run
-        run: |
-          cd ${{ matrix.terraform_module }}
-          terraform plan -input=false -var-file=/dev/null || echo "Plan check completed"
-        continue-on-error: true
-
   documentation:
     name: Documentation Check
     runs-on: ubuntu-latest
