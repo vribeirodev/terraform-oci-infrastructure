@@ -1,0 +1,111 @@
+name: Release Management
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'modules/**'
+      - 'examples/**'
+  workflow_dispatch:
+    inputs:
+      version_type:
+        description: 'Version type'
+        required: true
+        default: 'patch'
+        type: choice
+        options:
+          - patch
+          - minor
+          - major
+
+jobs:
+  detect-changes:
+    name: Detect Changes
+    runs-on: ubuntu-latest
+    outputs:
+      should_release: ${{ steps.changes.outputs.should_release }}
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Detect Changed Files
+        id: changes
+        run: |
+          CHANGED_FILES=$(git diff --name-only HEAD~1 HEAD)
+          echo "Changed files: $CHANGED_FILES"
+          
+          if echo "$CHANGED_FILES" | grep -qE "^(modules/|examples/)"; then
+            echo "should_release=true" >> $GITHUB_OUTPUT
+            echo "Release candidate detected"
+          else
+            echo "should_release=false" >> $GITHUB_OUTPUT
+            echo "No release needed"
+          fi
+
+  create-release:
+    name: Create Release
+    runs-on: ubuntu-latest
+    needs: detect-changes
+    if: needs.detect-changes.outputs.should_release == 'true'
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Calculate Version
+        id: version
+        run: |
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v0.0.0")
+          echo "Latest tag: $LATEST_TAG"
+          
+          VERSION=${LATEST_TAG#v}
+          IFS='.' read -r MAJOR MINOR PATCH <<< "$VERSION"
+          
+          VERSION_TYPE="${{ github.event.inputs.version_type || 'patch' }}"
+          
+          case $VERSION_TYPE in
+            major) MAJOR=$((MAJOR + 1)); MINOR=0; PATCH=0 ;;
+            minor) MINOR=$((MINOR + 1)); PATCH=0 ;;
+            patch) PATCH=$((PATCH + 1)) ;;
+          esac
+          
+          NEW_VERSION="v${MAJOR}.${MINOR}.${PATCH}"
+          echo "version=$NEW_VERSION" >> $GITHUB_OUTPUT
+
+      - name: Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.version }}
+          release_name: Release ${{ steps.version.outputs.version }}
+          body: |
+            # Terraform OCI Modules Release ${{ steps.version.outputs.version }}
+            
+            ## What's New
+            Production-ready Terraform modules for Oracle Cloud Infrastructure.
+            
+            ### Modules Included
+            - Networking Module: Complete VCN setup
+            - Compute Module: Debian-based instances
+            
+            ### Examples Available  
+            - Basic Infrastructure: Simple setup
+            - Web Application: Load balanced web servers
+            
+            ### Quick Start
+            ```bash
+            git clone https://github.com/${{ github.repository }}.git
+            cd terraform-oci-infrastructure/examples/basic-infrastructure
+            cp terraform.tfvars.example terraform.tfvars
+            terraform init && terraform plan
+            ```
+            
+            All examples use OCI Always Free resources.
+          draft: false
+          prerelease: false
