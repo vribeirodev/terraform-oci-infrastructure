@@ -18,6 +18,12 @@ on:
           - minor
           - major
 
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+  repository-projects: write
+
 jobs:
   detect-changes:
     name: Detect Changes

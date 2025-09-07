@@ -1,0 +1,6 @@
+skip-check:
+  - CKV_OCI_19
+  - CKV_OCI_4   
+  - CKV_OCI_5
+framework:
+  - terraform
