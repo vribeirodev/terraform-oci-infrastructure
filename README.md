@@ -177,9 +177,9 @@ Todos os exemplos usam recursos Always Free do OCI:
 
 ### Badges de Status
 
-![Terraform Validation](https://github.com/seu-usuario/terraform-oci-infrastructure/workflows/Terraform%20Validation/badge.svg)
-![Security Scanning](https://github.com/seu-usuario/terraform-oci-infrastructure/workflows/Security%20Scanning/badge.svg)
-![Module Testing](https://github.com/seu-usuario/terraform-oci-infrastructure/workflows/Module%20Testing/badge.svg)
+![Terraform Validation](https://github.com/vribeirodev/terraform-oci-infrastructure/workflows/Terraform%20Validation/badge.svg)
+![Security Scanning](https://github.com/vribeirodev/terraform-oci-infrastructure/workflows/Security%20Scanning/badge.svg)
+![Module Testing](https://github.com/vribeirodev/terraform-oci-infrastructure/workflows/Module%20Testing/badge.svg)
 
 ## Contribuição
 
@@ -251,9 +251,8 @@ Este projeto é open source e está disponível sob a [MIT License](LICENSE).
 
 ## Contato
 
-- **GitHub**: [@seu-usuario](https://github.com/seu-usuario)
-- **LinkedIn**: [Seu Nome](https://linkedin.com/in/seu-perfil)
-- **Email**: seu-email@exemplo.com
+- **LinkedIn**: [Seu Nome](https://linkedin.com/in/vribeirodev)
+- **Email**: vribeiro.dev@gmail.com
 
 ---
 
