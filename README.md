@@ -251,7 +251,7 @@ Este projeto é open source e está disponível sob a [MIT License](LICENSE).
 
 ## Contato
 
-- **LinkedIn**: [Seu Nome](https://linkedin.com/in/vribeirodev)
+- **LinkedIn**: [Vinicius Ribeiro](https://linkedin.com/in/vribeirodev)
 - **Email**: vribeiro.dev@gmail.com
 
 ---
