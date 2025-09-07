@@ -1,0 +1,24 @@
+# Copie este arquivo para terraform.tfvars e preencha com seus valores
+
+# OBRIGATÓRIO: OCID do seu compartimento OCI
+compartment_id = "ocid1.compartment.oc1..aaaaaaaa..."
+
+# OBRIGATÓRIO: Sua chave SSH pública
+ssh_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC... seu-email@exemplo.com"
+
+# Configurações do projeto (opcional)
+project_name = "minha-webapp"
+environment  = "dev"
+region       = "us-ashburn-1"
+
+# Configurações de rede (opcional - valores padrão são adequados)
+# vcn_cidr_blocks      = ["10.0.0.0/16"]
+# public_subnet_cidr   = "10.0.1.0/24"
+# private_subnet_cidr  = "10.0.2.0/24"
+
+# Configurações dos servidores (opcional)
+# web_server_count = 2
+# instance_shape   = "VM.Standard.E2.1.Micro"
+
+# Monitoramento (opcional)
+# enable_monitoring = true
