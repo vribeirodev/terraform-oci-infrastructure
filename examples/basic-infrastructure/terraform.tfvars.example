@@ -1,0 +1,18 @@
+# Copie este arquivo para terraform.tfvars e preencha com seus valores
+
+# OBRIGATÓRIO: OCID do seu compartimento OCI
+compartment_id = "ocid1.compartment.oc1..aaaaaaaa..."
+
+# Região OCI (opcional, padrão: us-ashburn-1)
+region = "us-ashburn-1"
+
+# Nome do projeto (opcional)
+project_name = "meu-projeto"
+
+# Ambiente (opcional)
+environment = "dev"
+
+# Configurações de rede (opcional, valores padrão são adequados)
+# vcn_cidr_blocks      = ["10.0.0.0/16"]
+# public_subnet_cidr   = "10.0.1.0/24"
+# private_subnet_cidr  = "10.0.2.0/24"
